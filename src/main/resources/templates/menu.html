@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Меню</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Меню</h2>
+    <a class="btn btn-primary mb-3" href="/menu/new">Добавить блюдо</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Вес</th>
+                <th>Цена</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="item : ${menuItems}">
+                <td th:text="${item.foodName}">Название</td>
+                <td th:text="${item.weight}">Вес</td>
+                <td th:text="${item.price}">Цена</td>
+                <td>
+                    <a th:href="@{/menu/edit/{id}(id=${item.id})}" class="btn btn-warning btn-sm">Редактировать</a>
+                    <a th:href="@{/menu/delete/{id}(id=${item.id})}" class="btn btn-danger btn-sm">Удалить</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
